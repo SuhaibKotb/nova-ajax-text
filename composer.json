@@ -6,6 +6,12 @@
         "nova"
     ],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Suhaib Kotb",
+            "email": "suhaib.kotb@gmail.com"
+        }
+    ],
     "require": {
         "php": ">=7.1.0"
     },
