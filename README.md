@@ -24,9 +24,7 @@ The `{national_id}` url parameter will equal the `National ID` field value.
 ## Response Format:
 ```
 Route::get('/api/users/{national_id}/{property}', function($national_id, $property) {
-
     $user = \App\User::where('national_id', $national_id)->first();
-
     return $user->$property ?? '';  // it equal to $user->name;
 })->middleware(['nova']);
 ```

@@ -33,11 +33,8 @@
         mounted() {
             this.watchedComponents.forEach(component => {
                 let attribute = 'value';
-                if(component.field.component === 'belongs-to-field') {
-                    attribute = 'selectedResource';
-                }
                 component.$watch(attribute, (value) => {
-                    this.parentValue = (value && attribute === 'selectedResource') ? value.value : value;
+                    this.parentValue = value;
                     this.updateOptions();
                 }, { immediate: true });
             });
