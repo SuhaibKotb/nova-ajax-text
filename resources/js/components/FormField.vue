@@ -27,7 +27,8 @@
             return {
                 value: null,
                 loaded: false,
-                parentValue: null
+                parentValue: null,
+                alwaysDisabled: false,
             }
         },
         mounted() {
@@ -35,9 +36,13 @@
                 let attribute = 'value';
                 component.$watch(attribute, (value) => {
                     this.parentValue = value;
-                    this.updateOptions();
+                    this.updateValue();
                 }, { immediate: true });
             });
+
+            if (this.field.always_disabled) {
+              this.alwaysDisabled = this.field.always_disabled;
+            }
         },
         computed: {
             watchedComponents() {
@@ -55,8 +60,11 @@
                 return this.loaded && this.value == null;
             },
             disabled() {
+              if (this.alwaysDisabled) {
+                return true;
+              }
                 return this.loaded === false && (this.field.parent_attribute !== undefined && this.parentValue == null) || this.value == null;
-            }
+            },
         },
         methods: {
             setInitialValue() {
@@ -65,7 +73,7 @@
             fill(formData) {
                 formData.append(this.field.attribute, this.value || '')
             },
-            updateOptions() {
+            updateValue() {
                 this.value = null;
                 this.loaded = false;
                 if(this.notWatching() || (this.parentValue != null && this.parentValue !== '')) {

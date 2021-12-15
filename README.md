@@ -28,3 +28,14 @@ Route::get('/api/users/{national_id}/{property}', function($national_id, $proper
     return $user->$property ?? '';  // it equal to $user->name;
 })->middleware(['nova']);
 ```
+
+## Always Disabled:
+You can use alwaysDisabled option if you don't need to edit the vlaue.
+```
+Text::make('National ID', 'national_id'),
+
+AjaxText::make('Full Name', 'name')
+    ->alwaysDisabled()
+    ->parent('national_id')
+    ->get('/api/users/{national_id}/name'),
+```

@@ -14,19 +14,6 @@ class AjaxText extends Field
     public $component = 'nova-ajax-text';
 
     /**
-     * Indicates if the element should be shown on the index view.
-     *
-     * @var bool
-     */
-    public $showOnIndex = false;
-
-    /**
-     * Indicates if the element should be shown on the detail view.
-     * @var bool
-     */
-    public $showOnDetail = false;
-
-    /**
      * @param $endpoint
      * @return $this
      */
@@ -48,4 +35,13 @@ class AjaxText extends Field
         return $this;
     }
 
+    /**
+     * @return $this
+     */
+    public function alwaysDisabled()
+    {
+        $this->withMeta(['always_disabled' => true]);
+
+        return $this;
+    }
 }
